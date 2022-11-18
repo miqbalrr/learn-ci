@@ -47,13 +47,15 @@ jobs:
                 echo "Failed"
                 exit 1
             fi
-            
+
     - name: Create the Badge
       uses: schneegans/dynamic-badges-action@v1.0.0
       with:
-        auth: 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
+        auth: ${{ secrets.GIST_SECRET }}
         gistID: 93bfa9c6e08a21154f9d6a56da5304ee
         filename: covbadge.json
         label: Coverage
         message: ${{ env.COVERAGE }}
-        color: green
+        namedLogo: jest
+        color: blue
+        logoColor: lightblue
