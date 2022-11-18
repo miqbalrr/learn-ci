@@ -6,5 +6,6 @@ import (
 )
 
 func main() {
-	fmt.Println(calculator.Sum(2, 2))
+	testId := calculator.Sum(2, 2)
+	fmt.Println(testId)
 }
