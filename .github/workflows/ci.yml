@@ -39,6 +39,7 @@ jobs:
             echo "Minimum coverage: $TESTCOVERAGE_THRESHOLD %"
             totalCoverage=`go tool cover -func=coverage.out | grep total | grep -Eo '[0-9]+\.[0-9]+'`
             echo "Current test coverage: $totalCoverage %"
+            echo "COVERAGE=$totalCoverage" >> $GITHUB_ENV
             if (( $(echo "$totalCoverage $TESTCOVERAGE_THRESHOLD" | awk '{print ($1 >= $2)}') )); then
                 echo "OK"
             else
@@ -46,3 +47,13 @@ jobs:
                 echo "Failed"
                 exit 1
             fi
+            
+    - name: Create the Badge
+      uses: schneegans/dynamic-badges-action@v1.0.0
+      with:
+        auth: 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
+        gistID: 93bfa9c6e08a21154f9d6a56da5304ee
+        filename: covbadge.json
+        label: Coverage
+        message: ${{ env.COVERAGE }}
+        color: green
