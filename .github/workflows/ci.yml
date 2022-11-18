@@ -16,16 +16,16 @@ jobs:
 
     - name: Setup Golang
       run: |
-        go version
-        curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(go env GOPATH)/bin v1.50.1
+            go version
+            curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(go env GOPATH)/bin v1.50.1
 
     - name: Check vet
       run: |
-        go vet ./...
+            go vet ./...
 
     - name: Check lint
       run: |
-      golangci-lint run --issues-exit-code 0 --timeout 15m
+            golangci-lint run --issues-exit-code 0 --timeout 15m
 
     - name: Check unit test
       run: |
