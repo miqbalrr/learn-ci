@@ -1,12 +1,12 @@
 on:
-  push:
-    branches: [ main ]
   pull_request:
     branches: [ main ]
 
 jobs:
   checker:
     runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
 
     steps:
     - uses: actions/checkout@v2
@@ -47,15 +47,20 @@ jobs:
                 echo "Failed"
                 exit 1
             fi
+      - name: Comment a pull_request
+        uses: mb2dev/github-action-comment-pull-request@1.0.0
+        with:
+          message: "COVERAGE = ${{ env.COVERAGE }}%\n Thankyou!"
+          GITHUB_TOKEN: ${{ secrets.TOKEN }}
 
-    - name: Create the Badge
-      uses: schneegans/dynamic-badges-action@v1.0.0
-      with:
-        auth: ${{ secrets.GIST_SECRET }}
-        gistID: 93bfa9c6e08a21154f9d6a56da5304ee
-        filename: covbadge.json
-        label: Coverage
-        message: ${{ env.COVERAGE }}
-        namedLogo: jest
-        color: blue
-        logoColor: lightblue
+    # - name: Create the Badge
+    #   uses: schneegans/dynamic-badges-action@v1.0.0
+    #   with:
+    #     auth: ${{ secrets.GIST_SECRET }}
+    #     gistID: 93bfa9c6e08a21154f9d6a56da5304ee
+    #     filename: covbadge.json
+    #     label: Coverage
+    #     message: ${{ env.COVERAGE }}
+    #     namedLogo: jest
+    #     color: blue
+    #     logoColor: lightblue
