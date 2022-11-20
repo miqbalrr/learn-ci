@@ -51,7 +51,7 @@ jobs:
       uses: mb2dev/github-action-comment-pull-request@1.0.0
       with:
         message: "COVERAGE = ${{ env.COVERAGE }}%\n Thankyou!"
-        GITHUB_TOKEN: ${{ secrets.TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     # - name: Create the Badge
     #   uses: schneegans/dynamic-badges-action@v1.0.0
