@@ -47,11 +47,11 @@ jobs:
                 echo "Failed"
                 exit 1
             fi
-      - name: Comment a pull_request
-        uses: mb2dev/github-action-comment-pull-request@1.0.0
-        with:
-          message: "COVERAGE = ${{ env.COVERAGE }}%\n Thankyou!"
-          GITHUB_TOKEN: ${{ secrets.TOKEN }}
+    - name: Comment a pull_request
+      uses: mb2dev/github-action-comment-pull-request@1.0.0
+      with:
+        message: "COVERAGE = ${{ env.COVERAGE }}%\n Thankyou!"
+        GITHUB_TOKEN: ${{ secrets.TOKEN }}
 
     # - name: Create the Badge
     #   uses: schneegans/dynamic-badges-action@v1.0.0
