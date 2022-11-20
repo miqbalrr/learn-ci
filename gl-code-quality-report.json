@@ -1,0 +1,1 @@
+[{"description":"revive: var-naming: var ggId should be ggID","fingerprint":"D91E626A189B7D8619C1FBB04C5CF878","location":{"path":"calculator/calc.go","lines":{"begin":8}}},{"description":"revive: var-naming: var testId should be testID","fingerprint":"2F794263BAF3FF654B59836D46711C06","location":{"path":"main.go","lines":{"begin":9}}}]

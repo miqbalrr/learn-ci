@@ -5,7 +5,8 @@ func Sum(a, b int) int {
 }
 
 func Subtract(a, b int) int {
-	return a - b
+	ggId := b
+	return a - ggId
 }
 
 // func ThisError() (string, error) {
