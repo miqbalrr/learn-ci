@@ -1,6 +1,6 @@
 on:
   pull_request:
-    branches: [ main ]
+    branches: [ staging ]
 
 jobs:
   checker:
@@ -42,15 +42,17 @@ jobs:
             echo "COVERAGE=$totalCoverage" >> $GITHUB_ENV
             if (( $(echo "$totalCoverage $TESTCOVERAGE_THRESHOLD" | awk '{print ($1 >= $2)}') )); then
                 echo "OK"
+                echo "COV_EMOJI=:green_heart:" >> $GITHUB_ENV
             else
                 echo "Current test coverage is below threshold. Please add more unit tests or adjust percentage to a lower value."
                 echo "Failed"
+                echo "COV_EMOJI=:sleepy:" >> $GITHUB_ENV
                 exit 1
             fi
     - name: Comment a pull_request
       uses: mb2dev/github-action-comment-pull-request@1.0.0
       with:
-        message: "COVERAGE = ${{ env.COVERAGE }}%\n Thankyou!"
+        message: "COVERAGE = ${{ env.COVERAGE }}% - ${{env.COV_EMOJI}}\n Thankyou!"
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     # - name: Create the Badge
